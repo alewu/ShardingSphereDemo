@@ -1,0 +1,7 @@
+spring:
+    profiles:
+        active: encryptor
+    shardingsphere:
+        props:
+            sql:
+                show: true

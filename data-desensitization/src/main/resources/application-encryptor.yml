@@ -1,0 +1,30 @@
+spring:
+    shardingsphere:
+        datasource:
+            ds0:
+                driver-class-name: com.mysql.cj.jdbc.Driver
+                jdbc-url: jdbc:mysql://localhost:3306/apple
+                password: root
+                type: com.zaxxer.hikari.HikariDataSource
+                username: root
+            names: ds0
+        encrypt:
+            encryptors:
+                # 自定义加密算法
+                my_pwd_encryptor:
+                    props:
+                        aes:
+                            key:
+                                value: abc
+                    type: aes
+            tables:
+                my_user:
+                    columns:
+                        pwd:
+                            cipher-column: pwd
+                            encryptor: my_pwd_encryptor
+        props:
+            query:
+                with:
+                    cipher:
+                        column: true
